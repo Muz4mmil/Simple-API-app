@@ -1,6 +1,7 @@
 'use client'
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState, useMemo } from "react";
 
 interface Product {
@@ -60,12 +61,12 @@ export default function Home() {
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-5 place-items-center mx-auto mt-10">
         {filteredProducts && filteredProducts.map((item, index: number) => (
-          <div key={index} className="border border-gray-300 rounded-xl p-4 max-w-72 h-full flex flex-col gap-2 shadow-xl">
+          <Link href={`/product/${item.id}`} key={index} className="border border-gray-300 rounded-xl p-4 max-w-72 h-full flex flex-col gap-2 shadow-xl">
             <Image src={item.image} height={200} width={200} objectFit="contain" alt={item.title} className="h-[200px] w-full mx-auto text-center object-contain" />
             <h3 className="text-xl font-bold line-clamp-2 flex-grow">{item.title}</h3>
             <p className="line-clamp-3">{item.description}</p>
             <p className="text-xl font-bold">$ {item.price}</p>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
